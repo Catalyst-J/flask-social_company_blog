@@ -1,2 +1,2 @@
-**Company Social Blog**
+**Company Social Blog** \
 A simple Flask web application.
