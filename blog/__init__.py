@@ -1,9 +1,37 @@
 # Holds organizational logic
 # Connecting the blueprint, login_manager and others together.
 
+import os
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_login import LoginManager
 
 app = Flask(__name__)
+
+
+################
+# Database
+################
+base_dir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.jon(base_dir, 'data.sqlite')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+Migrate(app, db)
+
+
+################
+# Login Configurations
+################
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'users.login'
+
+
+################
+# View Blueprints
+################
 
 # Import the Views of 'Core' then register its blueprint.
 from blog.core.views import core
