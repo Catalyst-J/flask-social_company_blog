@@ -62,6 +62,35 @@ def login():
 
         return render_template('login.html', form=form)
 
+# Basic controller for updating User
+@users.route('/account', methods=['GET', 'POST'])
+@login_required
+def account():
+    form = UpdateUserForm()
+
+    if form.validate_on_submit():
+        
+        # This if-statement is triggered when a user attempts to upload a file
+        if form.picture.data:
+            username = current_user.username
+            picture = add_profile_pic(form.picture.data, username)
+            current_user.profile_image = picture
+
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+
+        flash('User Account Updated')
+
+        return redirect(url_for('users.account'))
+
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+
+    profile_image = url_for('static', filename='profile_pics/' + current_user.profile_image)
+
+    return render_template('account.html', form=form, profile_image=profile_image)
 
 
 
