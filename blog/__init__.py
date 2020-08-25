@@ -41,3 +41,6 @@ app.register_blueprint(core)
 from blog.error_pages.handlers import error_pages
 app.register_blueprint(error_pages)
 
+# Import the Views of 'Users' then register its blueprint.
+from blog.users.views import users
+app.register_blueprint(users)
