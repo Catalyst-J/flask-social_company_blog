@@ -92,6 +92,22 @@ def account():
 
     return render_template('account.html', form=form, profile_image=profile_image)
 
+# User Profile
+@users.route('/<username>')
+def user_posts(username):
+    
+    # Grab the page itself
+    # Cycle through posts in pages
+    page = request.args.get('page', 1, type=int)
+    
+    # .first_or_404 -- returns a 404 Error if user is inexistent
+    user = User.query.filter_by(username=username).first_or_404()
 
+    # author is the back reference for the User <-> BlogPost relationship
+    # Paginate handles the pages, then limits the results into just 5 per page.
+    # Ordered by descending order of the date.
+    blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.data.desc()).paginate(page=page, per_page=5)
+
+    return render_template('user_blog_posts.html', blog_posts=blog_posts, user=user)    
 
 
