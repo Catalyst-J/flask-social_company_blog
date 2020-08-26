@@ -1,7 +1,7 @@
 import os
 
 # Module 'Pillow'
-from PIL import Image
+from pil import Image
 
 from flask import url_for, current_app
 

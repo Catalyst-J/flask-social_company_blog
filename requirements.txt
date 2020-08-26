@@ -1,12 +1,12 @@
 alembic==0.9.9
-bcrypt <= 3.1.4
+bcrypt > 3.1.4
 blinker==1.4
-certifi <= 2018.1.18
+certifi > 2018.1.18
 cffi
 chardet==3.0.4
 click==6.7
 Flask==1.0.2
-Flask-Bcrypt <= 0.7.1
+Flask-Bcrypt > 0.7.1
 Flask-Dance==0.14.0
 Flask-DebugToolbar==0.10.1
 Flask-Login==0.4.1
@@ -22,18 +22,18 @@ itsdangerous==0.24
 Jinja2==2.10
 lazy==1.3
 Mako==1.0.7
-MarkupSafe <= 1.1.1
+MarkupSafe > 1.1.1
 oauth2==1.9.0.post1
 oauthlib==2.0.7
-Pillow <= 5.1.0
-pycparser <= 2.18
+Pillow > 5.1.0
+pycparser > 2.18
 python-dateutil==2.7.2
 python-editor==1.0.3
 requests==2.18.4
 requests-oauthlib==0.8.0
 six==1.11.0
-SQLAlchemy <= 1.3.18
-SQLAlchemy-Utils <= 0.36.8
+SQLAlchemy > 1.3.18
+SQLAlchemy-Utils > 0.36.8
 urllib3==1.22
 URLObject==2.4.3
 Werkzeug==0.14.1
