@@ -9,17 +9,22 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 
+################
+# Forms
+################
+
+# This should be set in an environment variable so that it's not included in the code.
+app.config['SECRET_KEY'] = 'somesupersecurekey'
 
 ################
 # Database
 ################
 base_dir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.jon(base_dir, 'data.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 Migrate(app, db)
-
 
 ################
 # Login Configurations

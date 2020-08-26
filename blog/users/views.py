@@ -19,7 +19,7 @@ users = Blueprint('users', __name__)
 
 @users.route('/logout')
 def logout():
-    login_user()
+    logout_user()
     return redirect(url_for('core.index'))
 
 # Basic controller only
@@ -60,7 +60,7 @@ def login():
 
             return redirect(next)
 
-        return render_template('login.html', form=form)
+    return render_template('login.html', form=form)
 
 # Basic controller for updating User
 @users.route('/account', methods=['GET', 'POST'])
@@ -74,7 +74,7 @@ def account():
         if form.picture.data:
             username = current_user.username
             picture = add_profile_pic(form.picture.data, username)
-            current_user.profile_image = picture
+            current_user.profile_img = picture
 
         current_user.username = form.username.data
         current_user.email = form.email.data
@@ -88,9 +88,9 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
 
-    profile_image = url_for('static', filename='profile_pics/' + current_user.profile_image)
+    profile_image = url_for('static', filename='profile_pics/' + current_user.profile_img)
 
-    return render_template('account.html', form=form, profile_image=profile_image)
+    return render_template('account.html', form=form, profile_img=profile_image)
 
 # User Profile
 @users.route('/<username>')

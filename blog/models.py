@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
 
     # Index = True, means to setup the index in the database.
     id = db.Column(db.Integer, primary_key=True)
-    profile_img = db.Column(db.String(64), nullable=False, default='default_profile.png')
+    profile_img = db.Column(db.String(64), nullable=False, default='default_profile.jpg')
     email = db.Column(db.String(32), unique=True, index=True)
     username = db.Column(db.String(16), unique=True, index=True)
     password_hash = db.Column(db.String(256))

@@ -9,67 +9,20 @@
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css" crossorigin="anonymous">
 
     <!-- JS, Popper.js, and jQuery -->
+    <script src="static/bootstrap/js/jquery-3.5.1.js" crossorigin="anonymous"></script>
+    <script src="static/bootstrap/js/popper-1.16.1.js" crossorigin="anonymous"></script>
     <script src="static/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <!--
-        Will contain:
-        
-        [No log-in]
-        Home
-        About
-        /
-        Log-In
-        Register
-
-        [Logged in]
-        Home        
-        About
-        Create Post
-        /
-        Account
-            Profile
-            Log-out
-
-    -->
-
-    <!-- Nav when not logged in -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Oak Blog</a>
+        <a class="navbar-brand" href="">Oak Blog</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('core.index')}}">Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('core.info')}}">About </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Log-In </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Register </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Nav when logged in -->
-    <!--
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Oak Blog</a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {% if current_user.is_authenticated  %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{url_for('core.index')}}">Home </a>
@@ -80,22 +33,37 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Create Post </a>
                 </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Profile </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Log-Out </a>
+                        <a class="dropdown-item" href="{{url_for('users.account')}}">Profile </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{url_for('users.logout')}}">Log-Out </a>
                     </div>
                 </li>
-            </form>
+            </ul>
+            
+            {% else %}
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('core.index')}}">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('core.info')}}">About </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('users.login')}}">Log-In </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('users.register')}}">Register </a>
+                </li>
+            </ul>
+            {% endif %}
         </div>
     </nav>
-    -->
 
     <div class="container">
     {% block content %}    

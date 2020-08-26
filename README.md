@@ -15,7 +15,7 @@ We'll create a company blog page where multiple users can log in, create blog po
 TABLE "users" \
 Columns:
 - id
-- profile_image
+- profile_img
 - email
 - username
 - password
