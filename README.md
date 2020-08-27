@@ -28,3 +28,6 @@ Columns:
 - date
 - title
 - content
+
+**Workspace-based Reminders** \
+Make sure to delete the contents of profile_pics\ except for default_profile.png
