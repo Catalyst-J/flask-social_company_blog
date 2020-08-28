@@ -7,6 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
+base_dir = os.path.abspath(os.path.dirname(__file__))
+
 app = Flask(__name__)
 
 ################
@@ -19,7 +21,6 @@ app.config['SECRET_KEY'] = 'somesupersecurekey'
 ################
 # Database
 ################
-base_dir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -49,3 +50,7 @@ app.register_blueprint(error_pages)
 # Import the Views of 'Users' then register its blueprint.
 from blog.users.views import users
 app.register_blueprint(users)
+
+# Import the Views of 'Blog Posts' then register its blueprint.
+from blog.blog_posts.views import blog_posts
+app.register_blueprint(blog_posts)
